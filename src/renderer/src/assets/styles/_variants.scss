@@ -34,12 +34,12 @@ $bgGrey: #F2F2F2;
         color: #fff;
     }
 
-    @if($border) {
-        border: 1px solid $border;
-    }@else {
+    @if($border == none) {
         border: none;
+    }@else {
+        border: 1px solid $border;
     }
 }
-@mixin buttonSmall($bgColor, $border) {
+@mixin buttonSmall ($bgColor, $border) {
     @include button(14px, $bgColor, 8px 16px, 5.56rem, $border)
 }

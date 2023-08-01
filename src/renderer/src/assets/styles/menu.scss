@@ -16,17 +16,30 @@
     }
     #categoryList {
         height: 15.79vh;
+        @include flex(row, center, center, nowrap, 0);
+
+        .categoryContainer {
+            @include flex(row, center, flex-start, wrap, 1.5rem 1.8rem);
+
+            button {
+                @include button(1.5rem, #fff, .75rem 1.25rem, 15rem, $main)
+            }
+            button.active {
+                @include button(1.5rem, $main, .75rem 1.25rem, 15rem)
+        }
+
+        }
     }
 
     #menuList {
         height: 72.59vh;
-        // background-color: $bgGrey;
+        background-color: $bgGrey;
         padding: 3.62rem 5rem;
         overflow-y: auto;
         &::-webkit-scrollbar {
             display: none;
         }
-        
+
         .menuContainer {
             @include flex(row, flex-start, flex-start, wrap, 2.5rem);
 

@@ -14,7 +14,8 @@
     "postinstall": "electron-builder install-app-deps",
     "build:win": "npm run build && electron-builder --win --config",
     "build:mac": "npm run build && electron-builder --mac --config",
-    "build:linux": "npm run build && electron-builder --linux --config"
+    "build:linux": "npm run build && electron-builder --linux --config",
+    "db": "json-server --watch ./resources/db/db.json"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^2.0.0",
@@ -23,7 +24,9 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.2",
+    "axios": "^1.4.0",
     "electron-updater": "^5.3.0",
+    "json-server": "^0.17.3",
     "react-router-dom": "^6.14.2",
     "sass": "^1.64.1"
   },

@@ -14,11 +14,11 @@
         }
         .recommend {
             height: 32.0625rem;
-            background: rgb(214,214,214);
+            // background: center/ 120% no-repeat url('https://twosomeplace.recruiter.co.kr/upload/291131/site/myImage/202201/cf178179-8007-4cc4-b7fd-a1b52f986dba.jpg');
+            background-color: $bgGrey;
             padding: 2.56rem 4rem;
             margin-top: 5.81rem;
-            
-    
+
             .recommendTxt {
                 font-size: 2.875rem;
             }
