@@ -1,0 +1,33 @@
+@import 'variants';
+
+#home {
+    @include container(space-between);
+    height: 100vh;
+    padding-block: 8.44rem 4.94rem;
+    // background: top/ 136% no-repeat url('https://mcdn.twosome.co.kr/upload/MODS0030/202106/MODS0030_20210617220418_hViWHnLB');
+
+    main {
+        width: 100vw;
+        .mainTitle {
+            font-size: 3.5em;
+            margin-bottom: 8rem;
+        }
+        .recommend {
+            height: 32.0625rem;
+            background: rgb(214,214,214);
+            padding: 2.56rem 4rem;
+            margin-top: 5.81rem;
+            
+    
+            .recommendTxt {
+                font-size: 2.875rem;
+            }
+        }
+    }
+    footer {
+        
+        .startBtn {
+            @include button(1.875rem, $main, 1.65rem 1rem, 27.5rem);
+        }
+    }
+}

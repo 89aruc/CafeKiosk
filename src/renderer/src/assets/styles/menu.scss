@@ -1,0 +1,60 @@
+@import 'variants';
+
+#menu {
+    @include container(flex-start);
+    header {
+        width: 100%;
+        .titleImg {
+            height: 11.62vh;
+            background: 25% 77%/ cover no-repeat url('https://mcdn.twosome.co.kr/upload/MODS0030/202106/MODS0030_20210617220342_PhOmqlrg');
+            
+            .backButton {
+                background-color: #ffffff81;
+                margin: 1.5rem 0 0 1.5rem;
+            }
+        }
+    }
+    #categoryList {
+        height: 15.79vh;
+    }
+
+    #menuList {
+        height: 72.59vh;
+        // background-color: $bgGrey;
+        padding: 3.62rem 5rem;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .menuContainer {
+            @include flex(row, flex-start, flex-start, wrap, 2.5rem);
+
+            .menuItem {
+                width: 17.5rem;
+                border-radius: 1.25rem;
+                border: 1px solid $gray;
+                .MuiCardHeader-title {
+                    font-size: 1.25rem;
+                }
+                .MuiCardHeader-subheader {
+                    font-size: 0.875rem;
+                }
+                
+                .MenuButtonWrap {
+                    margin-left: auto;
+    
+                    .optionBtn {
+                        @include buttonSmall(#fff, $main);
+                        display: inline-flex;
+                        margin-right: 0.75rem
+                    }
+                    .putBtn {
+                        @include buttonSmall($main, $main);
+                        display: inline-flex;
+                    }
+                }
+            }
+        }
+    }
+}
