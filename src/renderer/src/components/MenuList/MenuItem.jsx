@@ -1,13 +1,20 @@
 import { Box, Card, CardActions, CardContent, CardHeader, CardMedia } from "@mui/material";
+import { MenuCtx } from "@context/menuContext";
 
 export default function MenuItem({ menu }) {
+    const menuContext = MenuCtx();
+    const { handleOpen } = menuContext;
+
+    const menuPrice = (num) => Number(num).toLocaleString('ko-KR');
 
     return (
-        <Card className="menuItem" sx={{boxShadow: 0}}>
+        <Card className="menuItem" 
+            onClick={() => handleOpen(menu)}
+            sx={{boxShadow: 0}}>
             <CardHeader 
                 sx={{textAlign: 'center'}}
                 title={menu.name}
-                subheader={menu.price} />
+                subheader={`${menuPrice(menu.price)}원`} />
             <CardContent sx={{p: 0}}>
                 <CardMedia
                     component="img"

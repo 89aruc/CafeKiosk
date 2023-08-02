@@ -2,8 +2,12 @@ import { Box } from "@mui/material";
 import MenuItem from "./MenuItem";
 import { useCallback } from "react";
 import MenuItemSkeleton from "./MenuItemSkeleton";
+import { MenuCtx } from "@context/menuContext";
 
-export default function MenuList({ menus, loading }) {
+export default function MenuList() {
+    const menuContext = MenuCtx();
+    const { menus, loading } = menuContext;
+
     return (
         <Box id="menuList">
             <Box className="menuContainer">

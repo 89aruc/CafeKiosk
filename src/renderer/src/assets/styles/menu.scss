@@ -49,9 +49,11 @@
                 border: 1px solid $gray;
                 .MuiCardHeader-title {
                     font-size: 1.25rem;
+                    font-weight: 500;
                 }
                 .MuiCardHeader-subheader {
-                    font-size: 0.875rem;
+                    font-size: 1rem;
+                    color: $red;
                 }
                 
                 .MenuButtonWrap {

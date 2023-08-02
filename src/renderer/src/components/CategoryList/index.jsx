@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { Box } from "@mui/material";
+import { MenuCtx } from "@context/menuContext";
 
-export default function CategoryList({ categories, selCategory, onClick }) {
+export default function CategoryList() {
 
+    const menuContext = MenuCtx();
+    const { categories, selCategory, selectCategory} = menuContext;
+    
     return (
         <Box id="categoryList">
             <Box className="categoryContainer">
                 {categories && categories.map(category => (
-                    <button key={category.id}
-                        onClick={() => onClick(category.name)}
+                    <button key={category.name}
+                        onClick={() => selectCategory(category.name)}
                         className={(selCategory === category.name ? 'active' : '')}>
                             {category.name}
                     </button>

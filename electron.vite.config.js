@@ -16,6 +16,7 @@ export default defineConfig({
         '@pages': resolve('src/renderer/src/pages'), 
         '@styles': resolve('src/renderer/src/assets/styles'),
         '@components': resolve('src/renderer/src/components'),
+        '@context': resolve('src/renderer/src/context'),
         '@images': resolve('public/assets/images'),
       }
     },
