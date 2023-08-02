@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { Box } from "@mui/material";
 import { MenuCtx } from "@context/menuContext";
+import { Box } from "@mui/material";
 
 export default function CategoryList() {
 

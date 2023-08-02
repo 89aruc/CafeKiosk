@@ -1,5 +1,5 @@
-import { Box, Card, CardActions, CardContent, CardHeader, CardMedia } from "@mui/material";
 import { MenuCtx } from "@context/menuContext";
+import { Box, Card, CardActions, CardContent, CardHeader, CardMedia } from "@mui/material";
 
 export default function MenuItem({ menu }) {
     const menuContext = MenuCtx();

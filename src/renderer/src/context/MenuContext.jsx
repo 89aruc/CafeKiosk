@@ -1,5 +1,5 @@
-import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 export const MenuContext = createContext({});
 
@@ -53,7 +53,7 @@ export function MenuContextProvider({ children }) {
             getCategory, categories, 
             getMenuList, menus,
             selectCategory, selCategory, loading,
-            selectMenu,
+            selMenu, selectMenu,
             handleOpen, menuOpen
         }}> 
             { children }

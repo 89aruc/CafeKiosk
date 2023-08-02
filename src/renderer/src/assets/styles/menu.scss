@@ -33,7 +33,7 @@
 
     #menuList {
         height: 72.59vh;
-        background-color: $bgGrey;
+        background-color: $bgGray;
         padding: 3.62rem 5rem;
         overflow-y: auto;
         &::-webkit-scrollbar {
@@ -68,6 +68,47 @@
                         @include buttonSmall($main, $main);
                         display: inline-flex;
                     }
+                }
+            }
+        }
+    }
+
+}
+#menuDetail {
+    .MuiPaper-root {
+        border-radius: 5rem 5rem 0rem 0rem;
+        overflow: hidden;
+        height: 88vh;
+        
+        .menuInfo {
+            @include flex(column, flex-start, center, nowrap, 1rem);
+            height: 100%;
+            
+            .closeBtn {
+                width: 9.3125rem;
+                height: 6.0625rem;
+                border-radius: 0rem 0rem 2.5rem 2.5rem;
+                border: none;
+                background-color: $bgGray;
+            }
+            .content {
+                width: 31.875rem;
+                height: 31.75rem;
+                overflow: hidden;
+                text-align: center;
+                margin-top: 4.06rem;
+
+                .title {
+                    height: 5.5rem;
+                    line-height: 5.5rem;
+                    font-size: 2.3rem;
+                    font-weight: 500;
+                }
+                .menuImg {
+                    width: 100%;
+                    height: calc(100% - 5.5rem);
+                    object-fit: cover;
+                    border-radius: 4rem;
                 }
             }
         }

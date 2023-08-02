@@ -1,8 +1,7 @@
-import { Box } from "@mui/material";
-import MenuItem from "./MenuItem";
-import { useCallback } from "react";
-import MenuItemSkeleton from "./MenuItemSkeleton";
 import { MenuCtx } from "@context/menuContext";
+import MenuItem from "./MenuItem";
+import MenuItemSkeleton from "./MenuItemSkeleton";
+import { Box } from "@mui/material";
 
 export default function MenuList() {
     const menuContext = MenuCtx();
