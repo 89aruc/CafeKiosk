@@ -12,7 +12,7 @@ import { MenuCtx } from "@context/menuContext";
 export default function MenuPage() {
     const navigate = useNavigate();
     const menuContext = MenuCtx();
-    const {getCategory, getMenuList,selCategory } = menuContext;
+    const { getCategory, getMenuList, selCategory, basketList } = menuContext;
 
 
     useEffect(() => {
@@ -20,18 +20,27 @@ export default function MenuPage() {
         getCategory();
     }, []);
 
-    return(<div id="menu">
-        <header>
-            <Box className="titleImg">
-                <IconButton className='backButton'
-                    size="large"
-                    onClick={() => navigate(-1)}>
-                    <ArrowBackIosNewRoundedIcon fontSize="inherit" />
-                </IconButton>
-                <MenuDetail />
+    return(<Box id="menu">
+        <Box className="menuContainer">
+            <header>
+                <Box className="titleImg">
+                    <IconButton className='backButton'
+                        size="large"
+                        onClick={() => navigate(-1)}>
+                        <ArrowBackIosNewRoundedIcon fontSize="inherit" />
+                    </IconButton>
+                    <MenuDetail />
+                </Box>
+            </header> 
+            <CategoryList />
+            <MenuList />
+        </Box>
+        { basketList.length > 0 && (
+            <Box className="basketContainer">
+                {basketList.map(item => (
+                    <p key={item.id}>{item.name}</p>
+                ))}
             </Box>
-        </header> 
-        <CategoryList />
-        <MenuList />
-    </div>)
+        )}
+    </Box>)
 }

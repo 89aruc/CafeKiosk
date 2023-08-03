@@ -2,101 +2,127 @@
 
 #menu {
     @include container(flex-start);
-    header {
-        width: 100%;
-        .titleImg {
-            height: 11.62vh;
-            background: 25% 77%/ cover no-repeat url('https://mcdn.twosome.co.kr/upload/MODS0030/202106/MODS0030_20210617220342_PhOmqlrg');
-            
-            .backButton {
-                background-color: #ffffff81;
-                margin: 1.5rem 0 0 1.5rem;
-            }
-        }
-    }
-    #categoryList {
-        height: 15.79vh;
-        @include flex(row, center, center, nowrap, 0);
+    flex-direction: row;
 
-        .categoryContainer {
-            @include flex(row, center, flex-start, wrap, 1.5rem 1.8rem);
+    .menuContainer {
+        flex: 1;
 
-            button {
-                @include button(1.5rem, #fff, .75rem 1.25rem, 15rem, $main)
-            }
-            button.active {
-                @include button(1.5rem, $main, .75rem 1.25rem, 15rem)
-        }
-
-        }
-    }
-
-    #menuList {
-        height: 72.59vh;
-        background-color: $bgGray;
-        padding: 3.62rem 5rem;
-        overflow-y: auto;
-        &::-webkit-scrollbar {
-            display: none;
-        }
-
-        .menuContainer {
-            @include flex(row, flex-start, flex-start, wrap, 2.5rem);
-
-            .menuItem {
-                width: 17.5rem;
-                border-radius: 1.25rem;
-                border: 1px solid $gray;
-                .MuiCardHeader-title {
-                    font-size: 1.25rem;
-                    font-weight: 500;
-                }
-                .MuiCardHeader-subheader {
-                    font-size: 1rem;
-                    color: $red;
-                }
+        header {
+            width: 100%;
+            .titleImg {
+                height: 11.62vh;
+                background: 25% 77%/ cover no-repeat url('https://mcdn.twosome.co.kr/upload/MODS0030/202106/MODS0030_20210617220342_PhOmqlrg');
                 
-                .MenuButtonWrap {
-                    margin-left: auto;
+                .backButton {
+                    background-color: #ffffff81;
+                    margin: 1.5rem 0 0 1.5rem;
+                }
+            }
+        }
+        #categoryList {
+            height: 15.79vh;
+            @include flex(row, center, center, nowrap, 0);
     
-                    .optionBtn {
-                        @include buttonSmall(#fff, $main);
-                        display: inline-flex;
-                        margin-right: 0.75rem
+            .categoryContainer {
+                @include flex(row, center, flex-start, wrap, 1.5rem 1.8rem);
+    
+                button {
+                    @include button(1.5rem, #fff, .75rem 1.25rem, 15rem, $main)
+                }
+                button.active {
+                    @include button(1.5rem, $main, .75rem 1.25rem, 15rem)
+            }
+    
+            }
+        }
+    
+        #menuList {
+            height: 72.59vh;
+            background-color: $bgGray;
+            padding: 3.62rem 5rem;
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+    
+            .menuContainer {
+                @include flex(row, flex-start, flex-start, wrap, 2.5rem);
+    
+                .menuItem {
+                    width: 17.5rem;
+                    border-radius: 1.25rem;
+                    border: 1px solid $gray;
+                    .MuiCardHeader-title {
+                        font-size: 1.25rem;
+                        font-weight: 500;
                     }
-                    .putBtn {
-                        @include buttonSmall($main, $main);
-                        display: inline-flex;
+                    .MuiCardHeader-subheader {
+                        font-size: 1rem;
+                        color: $red;
+                    }
+                    
+                    .MenuButtonWrap {
+                        margin-left: auto;
+        
+                        .optionBtn {
+                            @include buttonSmall(#fff, $main);
+                            display: inline-flex;
+                            margin-right: 0.75rem
+                        }
+                        .putBtn {
+                            @include buttonSmall($main, $main);
+                            display: inline-flex;
+                        }
                     }
                 }
             }
         }
     }
+    .basketContainer {
+        width: 18.9375rem;
+        height: 100vh;
+        background-color: $bgGray;
+    }
 
+    &:has(.basketContainer) {
+        #menuList {
+            background-color: #fff;
+        }
+    }
 }
+
 #menuDetail {
+    height: max-content;
+
     .MuiPaper-root {
         border-radius: 5rem 5rem 0rem 0rem;
         overflow: hidden;
-        height: 88vh;
+        text-align: center;
+        padding-inline: 6.75rem;
+        padding-bottom: 20rem;
+
+        .closeBtn {
+            width: 9.3125rem;
+            height: 6.0625rem;
+            border-radius: 0rem 0rem 2.5rem 2.5rem;
+            border: none;
+            background-color: $bgGray;
+            margin-inline: auto;
+        }
+        .orderBtn {
+            @include button(1.5rem, $main, 1rem, 100%);
+            margin-top: 4rem
+        }
         
         .menuInfo {
             @include flex(column, flex-start, center, nowrap, 1rem);
-            height: 100%;
             
-            .closeBtn {
-                width: 9.3125rem;
-                height: 6.0625rem;
-                border-radius: 0rem 0rem 2.5rem 2.5rem;
-                border: none;
-                background-color: $bgGray;
-            }
             .content {
                 width: 31.875rem;
                 height: 31.75rem;
                 overflow: hidden;
                 text-align: center;
-                margin-top: 4.06rem;
+                margin-block: 1.5rem 3.06rem;
 
                 .title {
                     height: 5.5rem;
@@ -109,6 +135,42 @@
                     height: calc(100% - 5.5rem);
                     object-fit: cover;
                     border-radius: 4rem;
+                }
+            }
+            .subChoices {
+                width: 100%;
+                .optionGroupTitle {
+                    font-size: 1.8rem;
+                    font-weight: 700;
+                    text-align: left;
+                    color: #000;
+                    margin-bottom: .5rem;
+                }
+                .MuiFormControl-root {
+                    display: flex;
+                    margin-bottom: 2rem;
+                    .optionGroup {
+                        flex-direction: row;
+                        gap: 1.3rem 2.56rem;
+                        .option {
+                            white-space: nowrap;
+                            margin: 0;
+                            .css-ahj2mt-MuiTypography-root {
+                                font-size: 1.5rem;
+                                font-weight: 500;
+                            }
+                            &:not(.active) {
+                                @include button(1.5rem, $bgGray, 1rem, inherit);
+                                color: #000;
+                            }
+                            &.active {
+                                @include button(1.5rem, #fff, 1rem, inherit, $main);
+                            }
+                            .MuiButtonBase-root {
+                                display: none;
+                            }
+                        }
+                    }
                 }
             }
         }

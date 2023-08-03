@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 export const MenuContext = createContext({});
@@ -31,6 +31,8 @@ export function MenuContextProvider({ children }) {
         setSelCategory(name);
         getMenuList(name);
     }
+    
+    const orderMenuRef = useRef({});
 
     const [selMenu, setSelMenu] = useState(null);
     const selectMenu = (menu) => {
@@ -39,14 +41,32 @@ export function MenuContextProvider({ children }) {
 
     const [menuOpen, setMenuOpen] = useState(false);
     const handleOpen = (menu) => {
-        if(!menuOpen) selectMenu(menu);
-        else selectMenu(null);
+        if(!menuOpen) {
+            selectMenu(menu);
+            if (!orderMenuRef.current) orderMenuRef.current = {};
+            orderMenuRef.current = {
+                name: menu.name,
+                price: menu.price
+            }
+        }
+        else {
+            selectMenu(null);
+            orderMenuRef.current = {};
+        }
         setMenuOpen(!menuOpen);
     }
 
+    const [basketList, setBasketList] = useState([]);
+    const handleBasketUpdate = (data) => {
+        setBasketList((prev) => [
+            ...prev, data
+        ]);
+    }
+
     useEffect(() => {
-        console.log(selMenu);
-    }, [selMenu])
+        console.log(basketList);
+    }, [basketList])
+
 
     return (
         <MenuContext.Provider value={{
@@ -54,7 +74,9 @@ export function MenuContextProvider({ children }) {
             getMenuList, menus,
             selectCategory, selCategory, loading,
             selMenu, selectMenu,
-            handleOpen, menuOpen
+            handleOpen, menuOpen,
+            basketList, setBasketList,
+            orderMenuRef, handleBasketUpdate
         }}> 
             { children }
         </MenuContext.Provider>

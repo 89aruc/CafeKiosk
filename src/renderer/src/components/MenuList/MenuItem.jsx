@@ -9,7 +9,6 @@ export default function MenuItem({ menu }) {
 
     return (
         <Card className="menuItem" 
-            onClick={() => handleOpen(menu)}
             sx={{boxShadow: 0}}>
             <CardHeader 
                 sx={{textAlign: 'center'}}
@@ -25,7 +24,8 @@ export default function MenuItem({ menu }) {
             </CardContent>
             <CardActions sx={{p: 2}}>
                 <Box className="MenuButtonWrap">
-                    <button className="optionBtn">옵션</button>
+                    <button className="optionBtn"
+                        onClick={() => handleOpen(menu)}>옵션</button>
                     <button className="putBtn">담기</button>
                 </Box>
             </CardActions>
