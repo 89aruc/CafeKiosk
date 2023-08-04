@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { MenuCtx } from "@context/menuContext";
+import RequiredOptions from './RequiredOptions';
+import AdditionalOptions from './AdditionalOptions';
 
-import { Box, Drawer, Paper } from '@mui/material';
+import { Box, Drawer, Paper, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import RequiredOption from './RequiredOption';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 const cupType = [{
     "name": '포장 여부',
@@ -17,16 +19,30 @@ const cupType = [{
 export default function MenuDetail() {
     const menuContext = MenuCtx();
     const { handleOpen, menuOpen, selMenu, orderMenuRef, handleBasketUpdate } = menuContext;
-
+    const [addOptionOpen, setAddOptionOpen] = useState(false);
+    const handleAddOption = () => {
+        setAddOptionOpen(!addOptionOpen);
+        // 옵션 추가하고 확인 누르면 handleUpdate도 되도록 추가하기
+    }
+    
     const handleUpdate = () => {
         orderMenuRef.current.id = Date.now();
         handleBasketUpdate(orderMenuRef.current);
         handleOpen();
     }
     
+    const [requiredOptions, setRequiredOptions]= useState([]);
+    const [additionalOptions, setAdditionalOptions] = useState([]);
+
+    useEffect(() => {
+        if(selMenu) {
+            setRequiredOptions(selMenu.subchoices.filter((option) => option.mandatory));
+            setAdditionalOptions(selMenu.subchoices.filter((option) => !option.mandatory));
+        }
+    }, [selMenu])
+
     const Menu = useCallback(() => {
-        const { is_available_order, name, original_image, subchoices
-        } = selMenu;
+        const { is_available_order, name, original_image, subchoices } = selMenu;
     
         return (
             <Box className='menuInfo'>
@@ -38,18 +54,21 @@ export default function MenuDetail() {
                 </Box>
                 <Box className="subChoices">
                     {cupType.map(option => (
-                        <RequiredOption key={option.name} option={option} />
+                        <RequiredOptions key={option.name} option={option} />
                     ))}
-                    {subchoices && subchoices.map(option => {
-                        if(option.mandatory) {
-                            // 필수 옵션
-                            return <RequiredOption key={option.name} option={option} />
-                        }
-                    })}
+                    {requiredOptions.length > 0 && requiredOptions.map(option => (
+                        <RequiredOptions key={option.name} option={option} />
+                    ))}
+                    {additionalOptions.length > 0 && 
+                        subchoices.some(option => !option.mandatory) ?
+                        <button className="addOptionBtn" onClick={handleAddOption}>
+                            <span style={{marginInline: 'auto'}}>음료제조 옵션</span>
+                            <PlayArrowIcon fontSize="large" />
+                        </button> : '' }
                 </Box>
             </Box>
         )
-    }, [selMenu])
+    }, [additionalOptions, requiredOptions, selMenu])
 
     return (
         <Drawer
@@ -59,7 +78,7 @@ export default function MenuDetail() {
         elevation={10}
         transitionDuration={400}
         >
-            {selMenu !== null && 
+            {(selMenu !== null && !addOptionOpen) ? 
                 <>
                     <button 
                         onClick={handleOpen}
@@ -71,7 +90,9 @@ export default function MenuDetail() {
                         onClick={handleUpdate}>
                         장바구니 담기
                     </button>
-                </>}
+                </> : 
+                <AdditionalOptions addOption={handleAddOption} options={additionalOptions} />
+            }
         </Drawer>
     );
 }

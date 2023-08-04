@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { MenuCtx } from '../../context/menuContext';
 
-export default function RequiredOption({ option }) {
+export default function RequiredOptions({ option }) {
   const menuContext = MenuCtx();
   const { orderMenuRef } = menuContext;
 

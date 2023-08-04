@@ -111,7 +111,6 @@
         }
         .orderBtn {
             @include button(1.5rem, $main, 1rem, 100%);
-            margin-top: 4rem
         }
         
         .menuInfo {
@@ -172,7 +171,14 @@
                         }
                     }
                 }
+                .addOptionBtn {
+                    @include button(1.5rem, #fff, 1rem, 100%, $main);
+                    margin-block: 4rem 1.3rem;
+                }
             }
+        }
+        .additionalOptions {
+            min-height: 71vh;
         }
     }
 }
