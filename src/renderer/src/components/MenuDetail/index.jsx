@@ -27,6 +27,7 @@ export default function MenuDetail() {
     
     const handleUpdate = () => {
         orderMenuRef.current.id = Date.now();
+        orderMenuRef.current.original_image = selMenu.original_image
         handleBasketUpdate(orderMenuRef.current);
         handleOpen();
     }

@@ -13,7 +13,8 @@ export default function RequiredOptions({ option }) {
   const [value, setValue] = useState(option.subchoices[0].name);
 
   useEffect(() => {
-    orderMenuRef.current[`${option.name}`] = value;
+    const newValue = { ...orderMenuRef.current['option'], [option.name]: value };
+    orderMenuRef.current = { ...orderMenuRef.current, option: newValue };
   }, [value]);
 
   const handleChange = (event) => {

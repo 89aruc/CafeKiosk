@@ -1,19 +1,19 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '@styles/menu.scss'
 
+import { MenuCtx } from "@context/menuContext";
 import CategoryList from "@components/CategoryList";
 import MenuList from '@components/MenuList';
 import MenuDetail from "@components/MenuDetail";
-import { Box, Button, Drawer, IconButton } from "@mui/material";
+import Basket from "@components/Basket";
+import { Box, IconButton } from "@mui/material";
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-import { MenuCtx } from "@context/menuContext";
 
 export default function MenuPage() {
     const navigate = useNavigate();
     const menuContext = MenuCtx();
-    const { getCategory, getMenuList, selCategory, basketList } = menuContext;
-
+    const { getCategory, getMenuList, selCategory } = menuContext;
 
     useEffect(() => {
         getMenuList(selCategory);
@@ -29,18 +29,12 @@ export default function MenuPage() {
                         onClick={() => navigate(-1)}>
                         <ArrowBackIosNewRoundedIcon fontSize="inherit" />
                     </IconButton>
-                    <MenuDetail />
                 </Box>
             </header> 
             <CategoryList />
             <MenuList />
+            <MenuDetail />
         </Box>
-        { basketList.length > 0 && (
-            <Box className="basketContainer">
-                {basketList.map(item => (
-                    <p key={item.id}>{item.name}</p>
-                ))}
-            </Box>
-        )}
+        <Basket />
     </Box>)
 }

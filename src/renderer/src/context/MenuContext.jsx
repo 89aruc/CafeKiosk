@@ -46,7 +46,8 @@ export function MenuContextProvider({ children }) {
             if (!orderMenuRef.current) orderMenuRef.current = {};
             orderMenuRef.current = {
                 name: menu.name,
-                price: menu.price
+                price: menu.price,
+                option: []
             }
         }
         else {
@@ -62,6 +63,10 @@ export function MenuContextProvider({ children }) {
             ...prev, data
         ]);
     }
+    const handleBasketDelete = (id) => {
+        const newList = basketList.filter(item => item.id !== id);
+        setBasketList(newList);
+    }
 
     useEffect(() => {
         console.log(basketList);
@@ -76,7 +81,7 @@ export function MenuContextProvider({ children }) {
             selMenu, selectMenu,
             handleOpen, menuOpen,
             basketList, setBasketList,
-            orderMenuRef, handleBasketUpdate
+            orderMenuRef, handleBasketUpdate, handleBasketDelete
         }}> 
             { children }
         </MenuContext.Provider>
