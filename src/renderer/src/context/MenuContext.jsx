@@ -72,6 +72,7 @@ export function MenuContextProvider({ children }) {
         console.log(basketList);
     }, [basketList])
 
+    const menuPrice = (num) => Number(num).toLocaleString('ko-KR');
 
     return (
         <MenuContext.Provider value={{
@@ -81,7 +82,8 @@ export function MenuContextProvider({ children }) {
             selMenu, selectMenu,
             handleOpen, menuOpen,
             basketList, setBasketList,
-            orderMenuRef, handleBasketUpdate, handleBasketDelete
+            orderMenuRef, handleBasketUpdate, handleBasketDelete,
+            menuPrice
         }}> 
             { children }
         </MenuContext.Provider>

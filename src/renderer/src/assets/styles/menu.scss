@@ -103,7 +103,7 @@
                     .MuiTabs-flexContainer {
                         gap: 1rem;
                     }
-                    .MuiTabs-scrollButtons {
+                    .MuiTabs-scrollButtons svg {
                         font-size: 2rem;
                         color: $sub
                     }
@@ -228,23 +228,31 @@
             @include flex(column, flex-start, center, nowrap, 1rem);
             
             .content {
-                width: 31.875rem;
-                height: 31.75rem;
+                // width: 31.875rem;
+                // height: 31.75rem;
                 overflow: hidden;
                 text-align: center;
-                margin-block: 1.5rem 3.06rem;
+                margin-top: 1.5rem;
 
                 .title {
-                    height: 5.5rem;
-                    line-height: 5.5rem;
                     font-size: 2.3rem;
-                    font-weight: 500;
                 }
                 .menuImg {
-                    width: 100%;
-                    height: calc(100% - 5.5rem);
+                    width: 21rem;
+                    height: 20rem;
                     object-fit: cover;
-                    border-radius: 4rem;
+                    border-radius: 2rem;
+                    margin-bottom: .8rem;
+                }
+            }
+            .quantityPicker {
+                border: 1px solid $gray;
+                .quantity {
+                    display: inline-block;
+                    border-inline: 1px solid $gray;
+                    padding: 1rem 3rem;
+                    line-height: 1;
+                    vertical-align: middle;
                 }
             }
             .subChoices {

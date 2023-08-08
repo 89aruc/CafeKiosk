@@ -5,8 +5,7 @@ import { MenuCtx } from "@context/menuContext";
 
 export default function BasketItem({ item }) {
     const menuContext = MenuCtx();
-    const { handleBasketDelete } = menuContext;
-    const menuPrice = (num) => Number(num).toLocaleString('ko-KR');
+    const { handleBasketDelete, menuPrice } = menuContext;
 
     return(
         <Box key={item.id} className="basketItem">
@@ -27,7 +26,7 @@ export default function BasketItem({ item }) {
                     </p>
                 ))}
                 </Box>
-                <p>{menuPrice(item.price)}</p>
+                <p>{menuPrice(item.price * item.quantity)}</p>
             </Box>
         </Box>
     )

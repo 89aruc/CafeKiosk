@@ -3,9 +3,10 @@ import { MenuCtx } from "@context/menuContext";
 import RequiredOptions from './RequiredOptions';
 import AdditionalOptions from './AdditionalOptions';
 
-import { Box, Drawer, Paper, Typography } from '@mui/material';
+import { Box, Drawer, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import QuantityPicker from './QuantityPicker';
 
 const cupType = [{
     "name": '포장 여부',
@@ -18,22 +19,30 @@ const cupType = [{
 
 export default function MenuDetail() {
     const menuContext = MenuCtx();
-    const { handleOpen, menuOpen, selMenu, orderMenuRef, handleBasketUpdate } = menuContext;
+    const { handleOpen, menuOpen, selMenu, orderMenuRef, handleBasketUpdate, menuPrice } = menuContext;
+    
     const [addOptionOpen, setAddOptionOpen] = useState(false);
     const handleAddOption = () => {
         setAddOptionOpen(!addOptionOpen);
         // 옵션 추가하고 확인 누르면 handleUpdate도 되도록 추가하기
     }
-    
+
+    const [quantity, setQuantity] = useState(1);
+    const handleQuantity = (num) => {
+        setQuantity(num)
+    }
+
     const handleUpdate = () => {
         orderMenuRef.current.id = Date.now();
-        orderMenuRef.current.original_image = selMenu.original_image
+        orderMenuRef.current.original_image = selMenu.original_image;
+        orderMenuRef.current.quantity = quantity;
         handleBasketUpdate(orderMenuRef.current);
         handleOpen();
     }
     
     const [requiredOptions, setRequiredOptions]= useState([]);
     const [additionalOptions, setAdditionalOptions] = useState([]);
+    
 
     useEffect(() => {
         if(selMenu) {
@@ -42,17 +51,22 @@ export default function MenuDetail() {
         }
     }, [selMenu])
 
+
     const Menu = useCallback(() => {
-        const { is_available_order, name, original_image, subchoices } = selMenu;
+        const { is_available_order, name, price, original_image, subchoices } = selMenu;
     
         return (
             <Box className='menuInfo'>
                 {/* {is_available_order ? '주문가능': '품절'} */}
                 <Box className="content">
-                    <h3 className="title">{ name }</h3>
                     <img className="menuImg"
                         src={ original_image } alt={ name } />
+                    <Typography className="title"
+                        fontWeight={500}>{ name }</Typography>
+                    <Typography variant='h4'
+                        fontWeight={500}>{ menuPrice(price) }원</Typography>
                 </Box>
+                <QuantityPicker handleQuantity={handleQuantity} />
                 <Box className="subChoices">
                     {cupType.map(option => (
                         <RequiredOptions key={option.name} option={option} />

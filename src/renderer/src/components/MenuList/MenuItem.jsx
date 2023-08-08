@@ -3,9 +3,7 @@ import { Box, Card, CardActions, CardContent, CardHeader, CardMedia } from "@mui
 
 export default function MenuItem({ menu }) {
     const menuContext = MenuCtx();
-    const { handleOpen } = menuContext;
-
-    const menuPrice = (num) => Number(num).toLocaleString('ko-KR');
+    const { handleOpen, menuPrice } = menuContext;
 
     return (
         <Card className="menuItem" 
