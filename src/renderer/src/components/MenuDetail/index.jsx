@@ -58,11 +58,6 @@ export default function MenuDetail() {
     
 
     useEffect(() => {
-        // console.log(orderMenuRef.current)
-        // if(orderMenuRef && orderMenuRef.current) {
-        //     console.log('option', orderMenuRef.current['option'])
-        //     Object.values(orderMenuRef.current['option'])
-        // }
         if(selMenu) {
             let price = Number(selMenu.price);
             let selectOptions = [];

@@ -37,11 +37,13 @@ export default function MenuInfo() {
                         <button className="addOptionBtn" onClick={handleAddOption}>
                             <span style={{marginInline: 'auto'}}>
                                 음료제조 옵션 
-                                {selectAdditional.length > 0 && 
+                                {selectAdditional.length > 0 && <>
+                                    &#40;
                                     <small className="selectAddOption">
-                                        &#40;{selectAdditional.map(item => item.name).join()}&#41;
+                                        {selectAdditional.map(item => item.name).join()}
                                     </small>
-                                }
+                                    &#41;
+                                </>}
                                 </span>
                             <PlayArrowIcon fontSize="large" />
                         </button> : '' }
