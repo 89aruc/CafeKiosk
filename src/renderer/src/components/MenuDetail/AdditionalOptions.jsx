@@ -10,6 +10,18 @@ export default function AdditionalOptions({ option }) {
 
     const [checkedValues, setCheckedValues] = useState([]);
 
+    useEffect(() => {
+        if(orderMenuRef.current.option) {
+            const key = option.name;
+            const value = orderMenuRef.current.option[key];
+            if (Array.isArray(value)) {
+                value.map(item => {
+                    setCheckedValues((prev) => [...prev, item.name]);
+                })
+            }
+        }
+    }, [])
+
     const handleCheckboxChange = (event) => {
         const value = event.target.name;
         const isChecked = event.target.checked;
@@ -21,26 +33,20 @@ export default function AdditionalOptions({ option }) {
         }
     };
 
-
-    const [value, setValue] = useState();
-
     useEffect(() => {
-        const newOption = option.subchoices.map(item => {
-            for (let value of checkedValues) {
-                if(item.name === value) {
-                    return {name: item.name,  price: item.price}
-                }
-            }
-            return null;
-        }).filter(element => element !== null);
+        const newOption = option.subchoices
+            .filter((item) => checkedValues.includes(item.name))
+            .map((item) => ({ name: item.name, price: item.price }));
         
-        const newValue = { ...orderMenuRef.current['option'], [option.name]: newOption };
-        orderMenuRef.current = { ...orderMenuRef.current, option: newValue };
+        if(checkedValues.length <= 0) { 
+            if(orderMenuRef.current['option'] && Object.keys(orderMenuRef.current['option']).includes(option.name)) {
+                delete orderMenuRef.current['option'][option.name]
+            }
+        } else {
+            const newValue = { ...orderMenuRef.current['option'], [option.name]: newOption };
+            orderMenuRef.current = { ...orderMenuRef.current, option: newValue };
+        }
     }, [checkedValues]);
-
-    useEffect(() => {
-        console.log(orderMenuRef.current)
-    }, [orderMenuRef.current])
 
 
 

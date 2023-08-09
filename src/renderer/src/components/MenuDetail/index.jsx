@@ -22,6 +22,7 @@ export default function MenuDetail() {
     const [requiredOptions, setRequiredOptions]= useState([]);
     const [additionalOptions, setAdditionalOptions] = useState([]);
     const [newPrice, setNewPrice] = useState(0);
+    const [selectAdditional, setSelectAdditional] = useState(null);
 
     useEffect(() => {
         if(selMenu) {
@@ -50,9 +51,38 @@ export default function MenuDetail() {
         orderMenuRef.current.id = Date.now();
         orderMenuRef.current.original_image = selMenu.original_image;
         orderMenuRef.current.quantity = quantity;
+        orderMenuRef.current.totalPrice = totalPrice;
         handleBasketUpdate(orderMenuRef.current);
         handleOpen();
     }
+    
+
+    useEffect(() => {
+        // console.log(orderMenuRef.current)
+        // if(orderMenuRef && orderMenuRef.current) {
+        //     console.log('option', orderMenuRef.current['option'])
+        //     Object.values(orderMenuRef.current['option'])
+        // }
+        if(selMenu) {
+            let price = Number(selMenu.price);
+            let selectOptions = [];
+            if(orderMenuRef.current.option) {
+                Object.values(orderMenuRef.current.option).filter((value) => {
+                    if (Array.isArray(value)) {
+                        console.log('value: ', value)
+                        value.map(item => {
+                            selectOptions.push(item);
+                            price += Number(item.price)
+                        })
+                    }
+                }
+            );
+            }
+            console.log(selectOptions);
+            setSelectAdditional(selectOptions);
+            setNewPrice(price);
+        }
+    }, [orderMenuRef.current])
 
     return (
         <Drawer
@@ -64,7 +94,7 @@ export default function MenuDetail() {
         > <SelectMenuContext.Provider value={{
             requiredOptions, additionalOptions, 
             newPrice, quantity, handleQuantity, totalPrice,
-            handleAddOption
+            handleAddOption, selectAdditional
         }} >
             {(selMenu !== null && !addOptionOpen) ? 
                 <>

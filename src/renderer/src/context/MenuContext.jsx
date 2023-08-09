@@ -68,9 +68,9 @@ export function MenuContextProvider({ children }) {
         setBasketList(newList);
     }
 
-    useEffect(() => {
-        console.log(basketList);
-    }, [basketList])
+    // useEffect(() => {
+    //     console.log(basketList);
+    // }, [basketList])
 
     const menuPrice = (num) => Number(num).toLocaleString('ko-KR');
 

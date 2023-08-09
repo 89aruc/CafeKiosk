@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MenuCtx } from "@context/menuContext";
 import { SelectMenuCtx, cupType } from ".";
 import QuantityPicker from "./QuantityPicker";
@@ -11,7 +11,7 @@ export default function MenuInfo() {
     const { selMenu } = menuContext;
     const { name, original_image, subchoices } = selMenu;
     const selectMenuContext = SelectMenuCtx();
-    const { totalPrice, handleQuantity, handleAddOption, requiredOptions, additionalOptions} = selectMenuContext;
+    const { totalPrice, handleQuantity, handleAddOption, selectAdditional, requiredOptions, additionalOptions} = selectMenuContext;
 
         return (
             <Box className='menuInfo'>
@@ -35,7 +35,14 @@ export default function MenuInfo() {
                     {additionalOptions && additionalOptions.length > 0 && 
                         subchoices.some(option => !option.mandatory) ?
                         <button className="addOptionBtn" onClick={handleAddOption}>
-                            <span style={{marginInline: 'auto'}}>음료제조 옵션</span>
+                            <span style={{marginInline: 'auto'}}>
+                                음료제조 옵션 
+                                {selectAdditional.length > 0 && 
+                                    <small className="selectAddOption">
+                                        &#40;{selectAdditional.map(item => item.name).join()}&#41;
+                                    </small>
+                                }
+                                </span>
                             <PlayArrowIcon fontSize="large" />
                         </button> : '' }
                 </Box>

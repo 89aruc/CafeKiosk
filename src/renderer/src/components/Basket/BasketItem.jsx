@@ -6,8 +6,9 @@ import { MenuCtx } from "@context/menuContext";
 export default function BasketItem({ item }) {
     const menuContext = MenuCtx();
     const { handleBasketDelete, menuPrice } = menuContext;
+    console.log('item', item);
 
-    return(
+    return (
         <Box key={item.id} className="basketItem">
             <img src={item.original_image} alt={item.name} />
             <Box className="info">
@@ -20,13 +21,15 @@ export default function BasketItem({ item }) {
                     <span className="name">{item.name}</span>
                 </Box>
                 <Box className="options">
-                {Object.entries(item.option).map(([key, value]) => (
-                    <p key={key}>
-                    {`${value}`}
-                    </p>
-                ))}
+                    {Object.entries(item.option).map(([key, value]) => {
+                        if (Array.isArray(value)) {
+                            return <p>{value.map(item => item.name).join(', ')}</p>
+                        } else {
+                            return <p key={key}>{value}</p>;
+                        }
+                    })}
                 </Box>
-                <p>{menuPrice(item.price * item.quantity)}</p>
+                <p>{item.totalPrice}</p>
             </Box>
         </Box>
     )
