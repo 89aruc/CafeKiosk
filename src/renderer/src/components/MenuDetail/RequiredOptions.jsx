@@ -4,7 +4,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { MenuCtx } from '../../context/menuContext';
+import { MenuCtx } from '@context/menuContext';
 
 export default function RequiredOptions({ option }) {
   const menuContext = MenuCtx();

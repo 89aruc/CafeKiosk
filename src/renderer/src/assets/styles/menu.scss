@@ -255,46 +255,46 @@
                     vertical-align: middle;
                 }
             }
-            .subChoices {
-                width: 100%;
-                .optionGroupTitle {
-                    font-size: 1.8rem;
-                    font-weight: 700;
-                    text-align: left;
-                    color: #000;
-                    margin-bottom: .5rem;
-                }
-                .MuiFormControl-root {
-                    display: flex;
-                    margin-bottom: 2rem;
-                    .optionGroup {
-                        flex-direction: row;
-                        gap: 1.3rem 2.56rem;
-                        .option {
-                            white-space: nowrap;
-                            margin: 0;
-                            .css-ahj2mt-MuiTypography-root {
-                                font-size: 1.5rem;
-                                font-weight: 500;
-                            }
-                            &:not(.active) {
-                                @include button(1.5rem, $bgGray, 1rem, inherit);
-                                color: #000;
-                            }
-                            &.active {
-                                @include button(1.5rem, #fff, 1rem, inherit, $main);
-                            }
-                            .MuiButtonBase-root {
-                                display: none;
-                            }
-                        }
+        }
+        .optionGroupTitle {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: left;
+            color: #000;
+            margin-bottom: .5rem;
+        }
+        .subChoices {
+            width: 100%;
+        }
+        .MuiFormControl-root {
+            display: flex;
+            margin-bottom: 2rem;
+            .optionGroup {
+                flex-direction: row;
+                gap: 1.3rem 2.56rem;
+                .option {
+                    white-space: nowrap;
+                    margin: 0;
+                    .css-ahj2mt-MuiTypography-root {
+                        font-size: 1.5rem;
+                        font-weight: 500;
+                    }
+                    &:not(.active) {
+                        @include button(1.5rem, $bgGray, 1rem, inherit);
+                        color: #000;
+                    }
+                    &.active {
+                        @include button(1.5rem, #fff, 1rem, inherit, $main);
+                    }
+                    .MuiButtonBase-root {
+                        display: none;
                     }
                 }
-                .addOptionBtn {
-                    @include button(1.5rem, #fff, 1rem, 100%, $main);
-                    margin-block: 4rem 1.3rem;
-                }
             }
+        }
+        .addOptionBtn {
+            @include button(1.5rem, #fff, 1rem, 100%, $main);
+            margin-block: 4rem 1.3rem;
         }
         .additionalOptions {
             min-height: 71vh;
