@@ -157,42 +157,45 @@
 
             .basketList {
                 .basketItem {
-                    @include flex(row, flex-start, flex-start, nowrap, 1rem);
                     min-height: 14.75rem;
                     padding-top: 2rem;
                     border-bottom: 1px solid $sub;
                     font-size: 1.125rem;
-                    img {
-                        width: 7.2rem;
-                        height: 7rem;
-                        object-fit: cover;
-                    }
-                    .info {
-                        padding-top: .5rem;
+                    .itemContent{
+                        @include flex(row, flex-start, flex-start, nowrap, 1rem);
 
-                        .top {
-                            margin-bottom: 8px;
-
-                            & > * {
-                                display: inline;
-                            }
-                            .cancelBtn {
-                                padding: 0 0 8px 8px;
-                                float: right;
-                                margin-top: -0.5rem;
-                                svg {
-                                    font-size: 1.65rem;
-                                    vertical-align: top;
+                        img {
+                            width: 7.2rem;
+                            height: 7rem;
+                            object-fit: cover;
+                        }
+                        .info {
+                            padding-top: .5rem;
+    
+                            .top {
+                                margin-bottom: 8px;
+    
+                                & > * {
+                                    display: inline;
+                                }
+                                .cancelBtn {
+                                    padding: 0 0 8px 8px;
+                                    float: right;
+                                    margin-top: -0.5rem;
+                                    svg {
+                                        font-size: 1.65rem;
+                                        vertical-align: top;
+                                    }
+                                }
+                                .name {
+                                    font-size: 1.2rem;
+                                    line-height: 1.1;
                                 }
                             }
-                            .name {
-                                font-size: 1.2rem;
-                                line-height: 1.1;
+                            
+                            .options {
+                                margin-bottom: 8px;
                             }
-                        }
-                        
-                        .options {
-                            margin-bottom: 8px;
                         }
                     }
                 }

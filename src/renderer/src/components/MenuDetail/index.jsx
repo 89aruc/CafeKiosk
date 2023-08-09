@@ -33,18 +33,23 @@ export default function MenuDetail() {
     }, [selMenu])
 
     const [quantity, setQuantity] = useState(1);
-    const handleQuantity = (num) => {
-        setQuantity(num)
+    const handleQuantity = (type) => {
+        switch(type) {
+            case 'minus':
+                setQuantity((quantity) => quantity - 1)
+                break;
+            case 'plus':
+                setQuantity((quantity) => quantity + 1)
+                break;
+        }
     }
     const totalPrice = useMemo(() => {
         return menuPrice(newPrice * quantity);
     }, [newPrice, quantity]);
 
     const [addOptionOpen, setAddOptionOpen] = useState(false);
-    const [addOptions, setAddOptions] = useState(null);
     const handleAddOption = () => {
         setAddOptionOpen(!addOptionOpen);
-        // 옵션 추가하고 확인 누르면 handleUpdate도 되도록 추가하기
     }
 
     const handleUpdate = () => {
@@ -73,7 +78,6 @@ export default function MenuDetail() {
                 }
             );
             }
-            console.log(selectOptions);
             setSelectAdditional(selectOptions);
             setNewPrice(price);
         }
@@ -86,11 +90,12 @@ export default function MenuDetail() {
         id="menuDetail"
         elevation={10}
         transitionDuration={400}
-        > <SelectMenuContext.Provider value={{
-            requiredOptions, additionalOptions, 
-            newPrice, quantity, handleQuantity, totalPrice,
-            handleAddOption, selectAdditional
-        }} >
+        >
+            <SelectMenuContext.Provider value={{
+                requiredOptions, additionalOptions, 
+                newPrice, quantity, handleQuantity, totalPrice,
+                handleAddOption, selectAdditional
+            }} >
             {(selMenu !== null && !addOptionOpen) ? 
                 <>
                     <button 

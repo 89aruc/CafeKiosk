@@ -3,19 +3,14 @@ import { Box, IconButton, Typography } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-export default function QuantityPicker({ handleQuantity }) {
-    const [quantity, setQuantity] = useState(1);
-
-    useEffect(() => {
-        handleQuantity(quantity)
-    }, [quantity]);
+export default function QuantityPicker({ quantity, handleQuantity }) {
 
     return (
         <Box className="quantityPicker">
             <IconButton 
                 size="large"
                 disabled={quantity <= 1}
-                onClick={() => setQuantity((quantity) => quantity - 1)}>
+                onClick={() => handleQuantity('minus')}>
                     <RemoveIcon fontSize="large"
                         sx={{color: '#000'}} />
                 </IconButton>
@@ -23,7 +18,7 @@ export default function QuantityPicker({ handleQuantity }) {
                 className='quantity'> {quantity} </Typography>
             <IconButton 
                 size="large"
-                onClick={() => setQuantity((quantity) => quantity + 1)}>
+                onClick={() => handleQuantity('plus')}>
                     <AddIcon fontSize="large"
                         sx={{color: '#000'}} />
                 </IconButton>

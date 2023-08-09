@@ -11,7 +11,7 @@ export default function MenuInfo() {
     const { selMenu } = menuContext;
     const { name, original_image, subchoices } = selMenu;
     const selectMenuContext = SelectMenuCtx();
-    const { totalPrice, handleQuantity, handleAddOption, selectAdditional, requiredOptions, additionalOptions} = selectMenuContext;
+    const { totalPrice, handleAddOption, quantity, handleQuantity, selectAdditional, requiredOptions, additionalOptions} = selectMenuContext;
 
         return (
             <Box className='menuInfo'>
@@ -24,7 +24,7 @@ export default function MenuInfo() {
                     <Typography variant='h4'
                         fontWeight={500}>{ totalPrice }원</Typography>
                 </Box>
-                <QuantityPicker handleQuantity={handleQuantity} />
+                <QuantityPicker quantity={ quantity } handleQuantity={ handleQuantity } />
                 <Box className="subChoices">
                     {cupType.map(option => (
                         <RequiredOptions key={option.name} option={option} />
