@@ -10,9 +10,22 @@ export default function RequiredOptions({ option }) {
   const menuContext = MenuCtx();
   const { orderMenuRef } = menuContext;
 
-  const [value, setValue] = useState(option.subchoices[0].name);
+  const [value, setValue] = useState(null);
+  useEffect(() => {
+    if(option) {
+      const key = option.name;
+      const check = Object.keys(orderMenuRef.current.option).includes(key)
+      const value = orderMenuRef.current.option[key];
+      if(check) {
+        setValue(value);
+      }else {
+        setValue(option.subchoices[0].name)
+      }
+    }
+  }, [])
 
   useEffect(() => {
+    
     const newValue = { ...orderMenuRef.current['option'], [option.name]: value };
     orderMenuRef.current = { ...orderMenuRef.current, option: newValue };
   }, [value]);
@@ -26,6 +39,7 @@ export default function RequiredOptions({ option }) {
       <FormLabel id={option.name}
         className='optionGroupTitle'>
         {option.name}
+
       </FormLabel>
       <RadioGroup
         aria-labelledby={option.name}

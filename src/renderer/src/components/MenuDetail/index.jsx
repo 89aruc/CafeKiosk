@@ -53,7 +53,6 @@ export default function MenuDetail() {
     }
 
     const handleUpdate = () => {
-        orderMenuRef.current.id = Date.now();
         orderMenuRef.current.original_image = selMenu.original_image;
         orderMenuRef.current.quantity = quantity;
         orderMenuRef.current.totalPrice = newPrice * quantity;

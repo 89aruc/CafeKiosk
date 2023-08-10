@@ -45,6 +45,7 @@ export function MenuContextProvider({ children }) {
             selectMenu(menu);
             if (!orderMenuRef.current) orderMenuRef.current = {};
             orderMenuRef.current = {
+                id: Date.now(),
                 name: menu.name,
                 price: menu.price,
                 option: []

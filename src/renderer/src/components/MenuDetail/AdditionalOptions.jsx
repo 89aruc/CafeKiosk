@@ -11,6 +11,7 @@ export default function AdditionalOptions({ option }) {
     const [checkedValues, setCheckedValues] = useState([]);
 
     useEffect(() => {
+        console.log(orderMenuRef.current)
         if(orderMenuRef.current.option) {
             const key = option.name;
             const value = orderMenuRef.current.option[key];

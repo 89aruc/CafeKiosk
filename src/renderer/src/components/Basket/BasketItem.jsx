@@ -23,6 +23,7 @@ export default function BasketItem({ item }) {
     useEffect(() => {
         setQuantity(item.quantity)
     }, []);
+    
     useEffect(() => {
         handleBasketQuantity(item.id, quantity);
     }, [quantity])
