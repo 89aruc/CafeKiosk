@@ -5,15 +5,6 @@ import MenuInfo from './MenuInfo';
 
 import { Drawer } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-
-export const cupType = [{
-    "name": '포장 여부',
-    "subchoices": [
-        {id: 1, name: '머그컵'}, 
-        {id: 2, name: '개인컵'}, 
-        {id: 3, name: '일회용'}
-    ]
-}]
 const SelectMenuContext = createContext();
 
 export default function MenuDetail() {

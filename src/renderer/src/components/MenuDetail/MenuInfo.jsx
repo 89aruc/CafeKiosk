@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { MenuCtx } from "@context/menuContext";
-import { SelectMenuCtx, cupType } from ".";
+import { cupType } from "../../pages/MenuPage";
+import { SelectMenuCtx } from ".";
 import QuantityPicker from "@components/QuantityPicker";
 import { Box, Typography } from '@mui/material';
 import RequiredOptions from "./RequiredOptions";
@@ -45,7 +46,7 @@ export default function MenuInfo() {
                                     &#41;
                                 </>}
                                 </span>
-                            <PlayArrowIcon fontSize="large" />
+                            <PlayArrowIcon sx={{fontSize: "2rem"}} />
                         </button> : '' }
                 </Box>
             </Box>

@@ -88,8 +88,23 @@ export function MenuContextProvider({ children }) {
         setBasketList(newList);
     }
 
+    const [orderInfo, setorderInfo] = useState({
+        totalPrice: 0,
+        totalQuantity: 0
+    })
+
     useEffect(() => {
-        console.log(basketList);
+        console.log(basketList)
+        let totalPrice = 0;
+        let totalQuantity = 0;
+        basketList.map((order) => {
+            totalPrice += Number(order.totalPrice);
+            totalQuantity += Number(order.quantity);
+        });
+        setorderInfo({
+            totalPrice: totalPrice,
+            totalQuantity: totalQuantity
+        })
     }, [basketList])
 
     const menuPrice = (num) => Number(num).toLocaleString('ko-KR');
@@ -103,7 +118,7 @@ export function MenuContextProvider({ children }) {
             handleOpen, menuOpen,
             basketList, setBasketList,
             orderMenuRef, handleBasketUpdate, handleBasketDelete, handleBasketQuantity,
-            menuPrice
+            menuPrice, orderInfo
         }}> 
             { children }
         </MenuContext.Provider>

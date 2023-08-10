@@ -38,7 +38,7 @@ $basketContainerWidth: 22.7rem;
     }
 
     @if($border == none) {
-        border: none;
+        border: 1px solid $bgColor;
     }@else {
         border: 1px solid $border;
     }

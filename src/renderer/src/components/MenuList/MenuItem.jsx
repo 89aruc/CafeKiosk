@@ -1,9 +1,30 @@
 import { MenuCtx } from "@context/menuContext";
 import { Box, Card, CardActions, CardContent, CardHeader, CardMedia } from "@mui/material";
+import { cupType } from "../../pages/MenuPage";
 
 export default function MenuItem({ menu }) {
     const menuContext = MenuCtx();
-    const { handleOpen, menuPrice } = menuContext;
+    const { handleOpen, menuPrice, orderMenuRef, handleBasketUpdate } = menuContext;
+    const handleUpdate = () => {
+        const options = {};
+        options[cupType[0].name] = cupType[0].subchoices[0].name;
+        const requiredOptions = menu.subchoices.filter((option) => option.mandatory);
+        if(requiredOptions.length > 0) {
+            requiredOptions.map(option => {
+                return options[option.name] = option.subchoices[0].name;
+            })
+        }
+        orderMenuRef.current = {
+            id: Date.now(),
+            name: menu.name,
+            price: menu.price,
+            option: options,
+            original_image: menu.original_image,
+            quantity: 1,
+            totalPrice: menu.price
+        }
+        handleBasketUpdate(orderMenuRef.current);
+    }
 
     return (
         <Card className="menuItem" 
@@ -24,7 +45,9 @@ export default function MenuItem({ menu }) {
                 <Box className="MenuButtonWrap">
                     <button className="optionBtn"
                         onClick={() => handleOpen(menu)}>옵션</button>
-                    <button className="putBtn">담기</button>
+                    <button className="putBtn"
+                        onClick={() => handleUpdate()}
+                    >담기</button>
                 </Box>
             </CardActions>
         </Card>
