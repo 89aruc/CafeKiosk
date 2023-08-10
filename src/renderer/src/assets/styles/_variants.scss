@@ -7,6 +7,9 @@ $lightGray: #D9D9D9;
 $bgGray: #F2F2F2;
 
 
+$basketContainerWidth: 22.7rem;
+
+
 @mixin flex ($direction, $justify, $items, $wrap, $gap) {
     display: flex;
     flex-direction: $direction;
@@ -41,5 +44,5 @@ $bgGray: #F2F2F2;
     }
 }
 @mixin buttonSmall ($bgColor, $border) {
-    @include button(14px, $bgColor, 8px 16px, 5.56rem, $border)
+    @include button(1rem, $bgColor, 8px 16px, 5.56rem, $border)
 }

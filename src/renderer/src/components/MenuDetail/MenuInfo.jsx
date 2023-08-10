@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { MenuCtx } from "@context/menuContext";
 import { SelectMenuCtx, cupType } from ".";
-import QuantityPicker from "./QuantityPicker";
+import QuantityPicker from "@components/QuantityPicker";
 import { Box, Typography } from '@mui/material';
 import RequiredOptions from "./RequiredOptions";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';

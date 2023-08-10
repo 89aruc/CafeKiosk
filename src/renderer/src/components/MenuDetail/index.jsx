@@ -56,7 +56,7 @@ export default function MenuDetail() {
         orderMenuRef.current.id = Date.now();
         orderMenuRef.current.original_image = selMenu.original_image;
         orderMenuRef.current.quantity = quantity;
-        orderMenuRef.current.totalPrice = totalPrice;
+        orderMenuRef.current.totalPrice = newPrice * quantity;
         handleBasketUpdate(orderMenuRef.current);
         handleOpen();
     }
@@ -69,7 +69,6 @@ export default function MenuDetail() {
             if(orderMenuRef.current.option) {
                 Object.values(orderMenuRef.current.option).filter((value) => {
                     if (Array.isArray(value)) {
-                        console.log('value: ', value)
                         value.map(item => {
                             selectOptions.push(item);
                             price += Number(item.price)

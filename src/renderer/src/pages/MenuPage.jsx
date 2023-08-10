@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '@styles/menu.scss'
+import '@styles/basket.scss'
 
 import { MenuCtx } from "@context/menuContext";
 import CategoryList from "@components/CategoryList";

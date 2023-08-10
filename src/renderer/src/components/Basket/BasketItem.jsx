@@ -1,14 +1,13 @@
 
-import { Box, IconButton } from "@mui/material";
-import CancelIcon from '@mui/icons-material/Cancel';
-import { MenuCtx } from "@context/menuContext";
-import QuantityPicker from "../MenuDetail/QuantityPicker";
-import { SelectMenuCtx } from "../MenuDetail";
 import { useEffect, useState } from "react";
+import { MenuCtx } from "@context/menuContext";
+import QuantityPicker from "@components/QuantityPicker";
+import { Box, IconButton, Typography } from "@mui/material";
+import CancelIcon from '@mui/icons-material/Cancel';
 
 export default function BasketItem({ item }) {
     const menuContext = MenuCtx();
-    const { handleBasketDelete } = menuContext;
+    const { handleBasketDelete, handleBasketQuantity } = menuContext;
     const [quantity, setQuantity] = useState(1);
     const handleQuantity = (type) => {
         switch(type) {
@@ -24,7 +23,9 @@ export default function BasketItem({ item }) {
     useEffect(() => {
         setQuantity(item.quantity)
     }, []);
-
+    useEffect(() => {
+        handleBasketQuantity(item.id, quantity);
+    }, [quantity])
     return (
         <Box key={item.id} className="basketItem">
             <Box className="itemContent">
@@ -36,12 +37,14 @@ export default function BasketItem({ item }) {
                             {/* 버튼 누르면 해당 아이템 BasketList에서 삭제 처리 */}
                             <CancelIcon />
                         </IconButton>
-                        <span className="name">{item.name}</span>
+                        <Typography fontWeight={500}
+                            fontSize='1.2rem' 
+                            className="name">{item.name}</Typography>
                     </Box>
                     <Box className="options">
                         {Object.entries(item.option).map(([key, value]) => {
                             if (Array.isArray(value)) {
-                                return <p>{value.map(item => item.name).join(', ')}</p>
+                                return <p key={item.name}>{value.map(item => item.name).join(', ')}</p>
                             } else {
                                 return <p key={key}>{value}</p>;
                             }
@@ -49,9 +52,11 @@ export default function BasketItem({ item }) {
                     </Box>
                 </Box>
             </Box>
-            <Box>
+            <Box className="itemPrice">
                 <QuantityPicker quantity={quantity} handleQuantity={handleQuantity} />
-                <p>{item.totalPrice}</p>
+                <Typography fontWeight={500}
+                    fontSize='1.3rem'
+                    className="price">{item.totalPrice}원</Typography>
             </Box>
         </Box>
     )

@@ -31,10 +31,10 @@
             }
     
             button.category {
-                @include button(1.5rem, #fff, .75rem 1.25rem, 15rem, $main)
+                @include button(1.25rem, #fff, .75rem 1.25rem, 15rem, $main)
             }
             button.category.active {
-                @include button(1.5rem, $main, .75rem 1.25rem, 15rem)
+                @include button(1.25rem, $main, .75rem 1.25rem, 15rem)
             }
         }
     
@@ -84,7 +84,6 @@
             }
         }
     }
-    $basketContainerWidth: 22.7rem;
 
     &:has(.basketContainer.active) {
         .menuContainer {
@@ -116,91 +115,6 @@
                     min-width: 13.9rem;
                 }
             }
-        }
-    }
-
-    .basketContainer {
-        width: 0;
-        height: 100vh;
-        background-color: $bgGray;
-        padding: 3.63rem .81rem 4.37rem;
-        overflow: hidden;
-        position: fixed;
-        right: -$basketContainerWidth;
-        transition: all .3s linear;
-        
-        & * { 
-            display: none;
-        }
-        
-        &.active {
-            width: $basketContainerWidth;
-            right: 0;
-
-            & * {
-                display: block;
-            }
-    
-            .emblem {
-                display: block;
-                height: 9.31rem;
-                margin: 0 auto;
-            }
-
-            .titleWrap {
-                text-align: center;
-                margin-block: 7rem 2.25rem;
-                & * {
-                    line-height: 1.5;
-                }
-            }
-
-            .basketList {
-                .basketItem {
-                    min-height: 14.75rem;
-                    padding-top: 2rem;
-                    border-bottom: 1px solid $sub;
-                    font-size: 1.125rem;
-                    .itemContent{
-                        @include flex(row, flex-start, flex-start, nowrap, 1rem);
-
-                        img {
-                            width: 7.2rem;
-                            height: 7rem;
-                            object-fit: cover;
-                        }
-                        .info {
-                            padding-top: .5rem;
-    
-                            .top {
-                                margin-bottom: 8px;
-    
-                                & > * {
-                                    display: inline;
-                                }
-                                .cancelBtn {
-                                    padding: 0 0 8px 8px;
-                                    float: right;
-                                    margin-top: -0.5rem;
-                                    svg {
-                                        font-size: 1.65rem;
-                                        vertical-align: top;
-                                    }
-                                }
-                                .name {
-                                    font-size: 1.2rem;
-                                    line-height: 1.1;
-                                }
-                            }
-                            
-                            .options {
-                                margin-bottom: 8px;
-                            }
-                        }
-                    }
-                }
-            }
-
         }
     }
 }
@@ -248,16 +162,6 @@
                     margin-bottom: .8rem;
                 }
             }
-            .quantityPicker {
-                border: 1px solid $gray;
-                .quantity {
-                    display: inline-block;
-                    border-inline: 1px solid $gray;
-                    padding: 1rem 3rem;
-                    line-height: 1;
-                    vertical-align: middle;
-                }
-            }
         }
         .optionGroupTitle {
             font-size: 1.8rem;
@@ -278,16 +182,16 @@
                 .option {
                     white-space: nowrap;
                     margin: 0;
-                    .css-ahj2mt-MuiTypography-root {
-                        font-size: 1.5rem;
+                    .MuiTypography-root {
+                        font-size: 1.25rem;
                         font-weight: 500;
                     }
                     &:not(.active) {
-                        @include button(1.5rem, $bgGray, 1rem, inherit);
+                        @include button(1.25rem, $bgGray, 1rem, inherit);
                         color: #000;
                     }
                     &.active {
-                        @include button(1.5rem, #fff, 1rem, inherit, $main);
+                        @include button(1.25rem, #fff, 1rem, inherit, $main);
                     }
                     .MuiButtonBase-root {
                         display: none;

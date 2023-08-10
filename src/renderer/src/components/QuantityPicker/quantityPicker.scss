@@ -1,0 +1,12 @@
+@import '@styles/variants';
+
+.quantityPicker {
+    border: 1px solid $gray;
+    .quantity {
+        display: inline-block;
+        border-inline: 1px solid $gray;
+        padding: 1rem 3rem;
+        line-height: 1;
+        vertical-align: bottom;
+    }
+}

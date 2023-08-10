@@ -67,10 +67,29 @@ export function MenuContextProvider({ children }) {
         const newList = basketList.filter(item => item.id !== id);
         setBasketList(newList);
     }
+    const handleBasketQuantity = (id, quantity) => {
+        const newList = basketList.map(item => {
+            if(item.id === id) {
+                let newTotalPrice = Number(item.price);
+                Object.values(item.option).filter(value => {
+                    if(Array.isArray(value)) {
+                        value.map(data => newTotalPrice += Number(data.price))
+                    }
+                })
+                return {...item, 
+                    quantity: quantity,
+                    totalPrice: newTotalPrice * quantity
+                }
+            }else {
+                return item
+            }
+        });
+        setBasketList(newList);
+    }
 
-    // useEffect(() => {
-    //     console.log(basketList);
-    // }, [basketList])
+    useEffect(() => {
+        console.log(basketList);
+    }, [basketList])
 
     const menuPrice = (num) => Number(num).toLocaleString('ko-KR');
 
@@ -82,7 +101,7 @@ export function MenuContextProvider({ children }) {
             selMenu, selectMenu,
             handleOpen, menuOpen,
             basketList, setBasketList,
-            orderMenuRef, handleBasketUpdate, handleBasketDelete,
+            orderMenuRef, handleBasketUpdate, handleBasketDelete, handleBasketQuantity,
             menuPrice
         }}> 
             { children }
