@@ -85,21 +85,23 @@ export default function MenuDetail() {
                 newPrice, quantity, handleQuantity, totalPrice,
                 handleAddOption, selectAdditional
             }} >
-            {(selMenu !== null && !addOptionOpen) ? 
                 <>
-                    <button 
-                        onClick={handleOpen}
-                        className="closeBtn">
-                        <CloseIcon sx={{fontSize: '3.21rem'}} />
-                    </button>
-                    {<MenuInfo />}
-                    <button className='orderBtn'
-                        onClick={handleUpdate}>
-                        장바구니 담기
-                    </button>
-                </> : 
-                <AdditionalOptionContainer />
-            }
+                {(selMenu !== null && !addOptionOpen) ? 
+                    <>
+                        <button 
+                            onClick={handleOpen}
+                            className="closeBtn">
+                            <CloseIcon sx={{fontSize: '3.21rem'}} />
+                        </button>
+                        {<MenuInfo />}
+                        <button className='orderBtn'
+                            onClick={handleUpdate}>
+                            장바구니 담기
+                        </button>
+                    </> : 
+                    <AdditionalOptionContainer />
+                }
+            </>
             </SelectMenuContext.Provider>
         </Drawer>
     );

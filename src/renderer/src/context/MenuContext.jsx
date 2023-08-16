@@ -59,6 +59,10 @@ export function MenuContextProvider({ children }) {
     }
 
     const [basketList, setBasketList] = useState([]);
+    const [orderInfo, setorderInfo] = useState({
+        totalPrice: 0,
+        totalQuantity: 0
+    })
     const handleBasketUpdate = (data) => {
         setBasketList((prev) => [
             ...prev, data
@@ -67,6 +71,13 @@ export function MenuContextProvider({ children }) {
     const handleBasketDelete = (id) => {
         const newList = basketList.filter(item => item.id !== id);
         setBasketList(newList);
+    }
+    const handleBasketReset = () => {
+        setBasketList([]);
+        setorderInfo({
+            totalPrice: 0,
+            totalQuantity: 0
+        })
     }
     const handleBasketQuantity = (id, quantity) => {
         const newList = basketList.map(item => {
@@ -87,11 +98,6 @@ export function MenuContextProvider({ children }) {
         });
         setBasketList(newList);
     }
-
-    const [orderInfo, setorderInfo] = useState({
-        totalPrice: 0,
-        totalQuantity: 0
-    })
 
     useEffect(() => {
         console.log(basketList)
@@ -117,7 +123,7 @@ export function MenuContextProvider({ children }) {
             selMenu, selectMenu,
             handleOpen, menuOpen,
             basketList, setBasketList,
-            orderMenuRef, handleBasketUpdate, handleBasketDelete, handleBasketQuantity,
+            orderMenuRef, handleBasketUpdate, handleBasketReset, handleBasketDelete, handleBasketQuantity,
             menuPrice, orderInfo
         }}> 
             { children }

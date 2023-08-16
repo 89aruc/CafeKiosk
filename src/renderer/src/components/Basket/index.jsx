@@ -1,12 +1,18 @@
 import { MenuCtx } from "@context/menuContext";
+import BasketItem from "./BasketItem";
 import emblem from '@images/emblem.svg'
 import { Box, Typography } from "@mui/material";
-import BasketItem from "./BasketItem";
-import { useEffect } from "react";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { useNavigate } from "react-router-dom";
 
 export default function Basket() {
     const menuContext = MenuCtx();
-    const { basketList, orderInfo } = menuContext;    
+    const { basketList, orderInfo, menuPrice, handleBasketReset } = menuContext;   
+    const navigate = useNavigate(); 
+    const handleMoveMain = () => {
+        navigate(-1);
+        handleBasketReset();
+    }
 
     return (
         <Box className={"basketContainer " + (basketList.length > 0 ? 'active' : '')}>
@@ -24,19 +30,32 @@ export default function Basket() {
                 </Box>
             </Box>
             <Box className="footer">
-                <ul>
+                <ul className="orderInfo">
                     <li>
                         <Typography>총 수량</Typography>
-                        <Typography>{orderInfo ? orderInfo.totalQuantity : 0}</Typography>
+                        <Typography>{orderInfo ? orderInfo.totalQuantity : 0}개</Typography>
                     </li>
                     <li>
                         <Typography>전체 가격</Typography>
-                        <Typography>{orderInfo ? orderInfo.totalPrice : 0}</Typography>
+                        <Typography>{orderInfo ? menuPrice(orderInfo.totalPrice) : 0}원</Typography>
                     </li>
                 </ul>
-                <img src="https://www.twosome.co.kr/resources/images/content/img_brochure_1.jpg"
+                <ul className="buttonWrap">
+                    <li>
+                        <button onClick={handleBasketReset}
+                            className="resetBtn">
+                            <DeleteOutlineIcon sx={{fontSize: '3rem', marginInline: 'auto'}} />
+                        </button>
+                        <button className="orderBtn">결제하기</button>
+                    </li>
+                    <li>
+                        <button onClick={handleMoveMain}
+                            className="mainMoveBtn">처음으로</button>
+                    </li>
+                </ul>
+                {/* <img src="https://www.twosome.co.kr/resources/images/content/img_brochure_1.jpg"
                     className="marketingBanner"
-                    alt="img_brochure" />
+                    alt="img_brochure" /> */}
             </Box>
         </Box>
     )

@@ -5,7 +5,7 @@
     height: 100vh;
     @include flex(column, flex-start, center, nowrap, 0);
     background-color: $bgGray;
-    padding: 3.63rem .81rem 4.37rem;
+    padding: 3.63rem .81rem 2.37rem;
     overflow: hidden;
     position: fixed;
     right: -$basketContainerWidth;
@@ -19,7 +19,7 @@
         width: $basketContainerWidth;
         right: 0;
 
-        & *:not(.quantityPicke *) {
+        & *:not(.quantityPicker *) {
             display: block;
         }
 
@@ -102,14 +102,14 @@
         .footer {
             width: 100%;
             padding-top: 3rem;
-            & li {
+            .orderInfo li {
                 @include flex(row, space-between, center, nowrap, 0);
                 padding-block: .5rem;
 
                 & > * {
                     display: inline-flex;
-                    font-size: 1.3rem;
-                    font-weight: 500;
+                    font-size: 1.6rem;
+                    font-weight: 600;
                     
                 }
             }
@@ -118,6 +118,32 @@
                 height: 7.5rem;
                 object-fit: cover;
                 margin-top: 1rem;
+            }
+            .buttonWrap {
+                text-align: center;
+                li {
+                    @include flex(row, center, center, nowrap, 0);
+                    button {
+                        height: 5rem;
+                        font-size: 2.2rem;
+                        font-weight: 700;
+                        padding: .8rem .2rem;
+                        flex: 1;
+                        color: #fff;
+                        border: none;
+
+                        &.resetBtn {
+                            background-color: $gray;
+                        }
+                        &.orderBtn {
+                            flex: 3;
+                            background-color: $main;
+                        }
+                        &.mainMoveBtn {
+                            background-color: $sub;
+                        }
+                    }
+                }
             }
         }
     }

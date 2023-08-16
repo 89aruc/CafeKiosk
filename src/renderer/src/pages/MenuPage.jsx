@@ -10,8 +10,7 @@ import MenuDetail from "@components/MenuDetail";
 import Basket from "@components/Basket";
 import { Box, Button, IconButton } from "@mui/material";
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-
-import { Bootpay } from '@bootpay/client-js'
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 export const cupType = [{
     "name": '포장 여부',
@@ -80,6 +79,10 @@ export default function MenuPage() {
             <CategoryList />
             <MenuList />
             <MenuDetail />
+            
+            <IconButton className="voiceBtn">
+                <KeyboardVoiceIcon sx={{fontSize: '5rem'}} />
+            </IconButton>
         </Box>
         <Basket />
     </Box>)

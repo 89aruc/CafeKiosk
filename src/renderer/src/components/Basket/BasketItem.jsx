@@ -7,7 +7,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 
 export default function BasketItem({ item }) {
     const menuContext = MenuCtx();
-    const { handleBasketDelete, handleBasketQuantity } = menuContext;
+    const { handleBasketDelete, handleBasketQuantity, menuPrice } = menuContext;
     const [quantity, setQuantity] = useState(1);
     const handleQuantity = (type) => {
         switch(type) {
@@ -57,7 +57,7 @@ export default function BasketItem({ item }) {
                 <QuantityPicker quantity={quantity} handleQuantity={handleQuantity} />
                 <Typography fontWeight={500}
                     fontSize='1.3rem'
-                    className="price">{item.totalPrice}원</Typography>
+                    className="price">{menuPrice(item.totalPrice)}원</Typography>
             </Box>
         </Box>
     )
