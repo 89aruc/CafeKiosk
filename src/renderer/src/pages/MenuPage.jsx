@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '@styles/menu.scss'
 import '@styles/basket.scss'
@@ -8,9 +8,10 @@ import CategoryList from "@components/CategoryList";
 import MenuList from '@components/MenuList';
 import MenuDetail from "@components/MenuDetail";
 import Basket from "@components/Basket";
-import { Box, Button, IconButton } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
-import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import VoiceRecorder from "../components/VoiceRecorder";
+import CancelIcon from '@mui/icons-material/Cancel';
 
 export const cupType = [{
     "name": '포장 여부',
@@ -20,6 +21,8 @@ export const cupType = [{
         {id: 3, name: '일회용'}
     ]
 }]
+
+
 
 export default function MenuPage() {
     const navigate = useNavigate();
@@ -31,38 +34,27 @@ export default function MenuPage() {
         getCategory();
     }, []);
 
-    // const handleTestBootpay = async () => {
-    //     const response = await Bootpay.requestPayment({
-    //         "application_id": "59a4d323396fa607cbe75de4",
-    //         "price": 1000,
-    //         "order_name": "테스트결제",
-    //         "order_id": "TEST_ORDER_ID",
-    //         "pg": "다날",
-    //         "method": "카드",
-    //         "tax_free": 0,
-    //         "user": {
-    //           "id": "회원아이디",
-    //           "username": "회원이름",
-    //           "phone": "01000000000",
-    //           "email": "test@test.com"
-    //         },
-    //         "items": [
-    //           {
-    //             "id": "item_id",
-    //             "name": "테스트아이템",
-    //             "qty": 1,
-    //             "price": 1000
-    //           }
-    //         ],
-    //         "extra": {
-    //           "open_type": "iframe",
-    //           "card_quota": "0,2,3",
-    //           "escrow": false
-    //         }
-    //       })
-    //       console.log(response);
-    // }
+    const [isRecording, setIsRecording] = useState(false)
+    const handleVoiceRecorder = () => {
+        setIsRecording(!isRecording);
+    }
 
+    const recordingInfo = () => {
+        return <Box position="absolute" zIndex={1600}
+                bottom="15rem" left="50%"
+                bgcolor="#fff" p={1} pl={3}
+                borderRadius={5}
+                sx={{transform: 'translateX(-50%)'}}>
+                <Typography component="span" fontSize="2rem"
+                    sx={{verticalAlign: 'middle'}}>레코딩 기능 추가 예정</Typography>
+                <IconButton
+                    onClick={handleVoiceRecorder}>
+                    <CancelIcon fontSize="large" />
+                </IconButton>
+            </Box>
+    }
+
+    
     return(<Box id="menu">
         <Box className="menuContainer">
             <header>
@@ -79,10 +71,8 @@ export default function MenuPage() {
             <CategoryList />
             <MenuList />
             <MenuDetail />
-            
-            <IconButton className="voiceBtn">
-                <KeyboardVoiceIcon sx={{fontSize: '5rem'}} />
-            </IconButton>
+            <VoiceRecorder onClick={handleVoiceRecorder} />
+            {isRecording && recordingInfo() }
         </Box>
         <Basket />
     </Box>)

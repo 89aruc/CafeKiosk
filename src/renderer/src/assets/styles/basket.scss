@@ -3,9 +3,10 @@
 .basketContainer {
     width: 0;
     height: 100vh;
+
     @include flex(column, flex-start, center, nowrap, 0);
     background-color: $bgGray;
-    padding: 3.63rem .81rem 2.37rem;
+    padding: 3.63rem 1rem 2.37rem;
     overflow: hidden;
     position: fixed;
     right: -$basketContainerWidth;

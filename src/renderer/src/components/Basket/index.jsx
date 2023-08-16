@@ -4,6 +4,7 @@ import emblem from '@images/emblem.svg'
 import { Box, Typography } from "@mui/material";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 export default function Basket() {
     const menuContext = MenuCtx();
@@ -14,6 +15,19 @@ export default function Basket() {
         handleBasketReset();
     }
 
+    const scrollRef = useRef();
+    useEffect(() => {
+        // 스크롤 위치 하단으로
+        scrollToBottom();
+    }, [basketList, scrollRef]);
+    const scrollToBottom = () => {
+        scrollRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+            inline: "nearest",
+        });
+    };
+
     return (
         <Box className={"basketContainer " + (basketList.length > 0 ? 'active' : '')}>
             <img src={emblem} alt="A TWOSOME PLACE" className='emblem' />
@@ -23,7 +37,7 @@ export default function Basket() {
                 <Typography fontSize="2rem">포장</Typography>
             </Box>
             <Box className="basketList">
-                <Box>
+                <Box ref={scrollRef}>
                     {basketList.length > 0 && basketList.map(item => (
                         <BasketItem key={item.name} item={ item } />
                     ))}
